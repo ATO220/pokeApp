@@ -6,9 +6,7 @@ import PokemonScreen from "../screens/Pokemon";
 const Stack = createNativeStackNavigator();
 export default function PokedexNavigation() {
   return (
-    <Stack.Navigator
-      screenOptions={{ headerTitleAlign: "center", headerTransparent: true }}
-    >
+    <Stack.Navigator>
       <Stack.Screen
         name="Pokedex"
         component={PokedexScreen}
@@ -23,7 +21,6 @@ export default function PokedexNavigation() {
         options={{
           title: "",
           headerTransparent: true,
-          headerTintColor: "#fefefe",
           headerShadowVisible: false,
         }}
       />
