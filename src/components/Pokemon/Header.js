@@ -1,21 +1,21 @@
-import {
-  View,
-  Text,
-  SafeAreaView,
-  Image,
-  StyleSheet,
-  Platform,
-} from "react-native";
-import React from "react";
-import { getColorByPokemonType } from "../../utils/getColorByPokemonType";
 import { capitalize } from "lodash";
+import React from "react";
+import {
+  Image,
+  Platform,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import { getColorByPokemonType } from "../../utils/getColorByPokemonType";
 
 export default function Header(props) {
   const { name, type, image, id } = props;
   const color = getColorByPokemonType(type);
   const bgStyles = { backgroundColor: color, ...styles.bg };
   return (
-    <View>
+    <>
       <View style={bgStyles} />
       <SafeAreaView style={styles.content}>
         <View style={styles.header}>
@@ -26,7 +26,7 @@ export default function Header(props) {
           <Image source={{ uri: image }} style={styles.image} />
         </View>
       </SafeAreaView>
-    </View>
+    </>
   );
 }
 
