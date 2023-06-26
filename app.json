@@ -1,5 +1,8 @@
 {
   "expo": {
+    "androidStatusBar": {
+      "translucent": true
+    },
     "name": "pokedex-app",
     "slug": "pokedex-app",
     "version": "1.0.0",
@@ -12,7 +15,6 @@
       "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": ["**/*"],
-
     "ios": {
       "supportsTablet": true
     },
@@ -29,6 +31,12 @@
       "eas": {
         "projectId": "73a86f65-49e8-4df2-914b-21a4ddafeb19"
       }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/73a86f65-49e8-4df2-914b-21a4ddafeb19"
     }
   }
 }
