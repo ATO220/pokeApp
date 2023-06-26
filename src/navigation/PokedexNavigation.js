@@ -1,5 +1,5 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
+import { createNativeStackNavigator } from "react-native-screens/native-stack";
 import PokedexScreen from "../screens/Pokedex";
 import PokemonScreen from "../screens/Pokemon";
 
@@ -20,7 +20,7 @@ export default function PokedexNavigation() {
         component={PokemonScreen}
         options={{
           title: "",
-          headerTransparent: true,
+          headerTranslucent: true,
           headerShadowVisible: false,
         }}
       />
