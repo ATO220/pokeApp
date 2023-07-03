@@ -1,30 +1,43 @@
-import {
-  ActivityIndicator,
-  FlatList,
-  Platform,
-  StyleSheet,
-} from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
+import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
+import usePokemons from "../hooks/usePokemons";
 import PokemonCard from "./PokemonCard";
 
 export default function PokemonList(props) {
-  const { pokemons, loadPokemons, isNext } = props;
+  const { isFavoriteScreen } = props;
+
+  const { loadPokemons, nextUrl, pokemonsList, favoritePokemons } =
+    usePokemons();
+  useEffect(() => {
+    (async () => {
+      await loadPokemons();
+    })();
+  }, []);
 
   const loadMore = () => {
     loadPokemons();
   };
+
+  let filtered = nextUrl && pokemonsList.length > 1;
+  const styleFlatListContentContainer = {
+    paddingBottom: isFavoriteScreen ? 35 : 0,
+    marginTop: isFavoriteScreen ? 30 : 85,
+    marginBottom: 30,
+    ...styles.flatListContentContainer,
+  };
   return (
     <FlatList
-      data={pokemons}
+      data={isFavoriteScreen ? favoritePokemons : pokemonsList}
       numColumns={2}
       showsVerticalScrollIndicator={false}
       keyExtractor={(pokemon) => String(pokemon.id)}
       renderItem={({ item }) => <PokemonCard pokemon={item} />}
-      contentContainerStyle={styles.flatListContentContainer}
-      onEndReached={isNext && loadMore}
+      contentContainerStyle={styleFlatListContentContainer}
+      onEndReached={!isFavoriteScreen && filtered && loadMore}
       onEndReachedThreshold={0.1}
       ListFooterComponent={
-        isNext && (
+        !isFavoriteScreen &&
+        filtered && (
           <ActivityIndicator
             color="#E74C3C"
             size="large"
@@ -39,10 +52,9 @@ export default function PokemonList(props) {
 const styles = StyleSheet.create({
   flatListContentContainer: {
     paddingHorizontal: 5,
-    marginTop: Platform.OS === "android" ? 30 : 0,
   },
   spinner: {
     marginTop: 20,
-    marginBottom: Platform.OS === "android" ? 90 : 60,
+    marginBottom: 130,
   },
 });
