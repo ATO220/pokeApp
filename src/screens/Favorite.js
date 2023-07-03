@@ -6,7 +6,7 @@ import useAuth from "../hooks/useAuth";
 import usePokemons from "../hooks/usePokemons";
 
 export default function FavoriteScreen() {
-  const { favoritePokemons, loadFavoritePokemons } = usePokemons();
+  const { loadFavoritePokemons } = usePokemons();
   const { auth } = useAuth();
 
   useFocusEffect(

@@ -13,7 +13,6 @@ export async function getPokemonsApi(endpointUrl) {
 
 export const getPokemonDetailsByUrlApi = async (url) => {
   try {
-    console.log("ENTROOO URRRLLLLL ", url);
     const response = await fetch(url);
     const result = await response.json();
     return result;
@@ -24,7 +23,6 @@ export const getPokemonDetailsByUrlApi = async (url) => {
 
 export const getPokemonDetailsByIdApi = async (id) => {
   try {
-    console.log("ENTROOO IIIDDDDDDD ");
     const url = `${API_HOST}/pokemon/${id}`;
     const response = await fetch(url);
     const result = await response.json();

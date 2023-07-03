@@ -105,7 +105,6 @@ const getListPokemonDetailsByField = async (pokemons, field) => {
       field === "url"
         ? await getPokemonDetailsByUrlApi(pokemonData.url)
         : await getPokemonDetailsByIdApi(pokemonData);
-    console.log("EEEEEAAAAApokemonDetail: ", pokemonDetail);
     pokemonDetailList.push({
       id: pokemonDetail.id,
       name: pokemonDetail.name,

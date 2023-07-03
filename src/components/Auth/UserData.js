@@ -7,7 +7,13 @@ import usePokemons from "../../hooks/usePokemons";
 export default function UserData() {
   const { auth, logout } = useAuth();
   const [total, setTotal] = useState(0);
-  const { favoritePokemons } = usePokemons();
+  const { favoritePokemons, loadFavoritePokemons } = usePokemons();
+
+  useEffect(() => {
+    (async () => {
+      await loadFavoritePokemons();
+    })();
+  }, []);
 
   useEffect(() => {
     try {
