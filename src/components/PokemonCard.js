@@ -1,14 +1,14 @@
+import { useNavigation } from "@react-navigation/native";
+import { capitalize } from "lodash";
+import React from "react";
 import {
-  View,
+  Image,
+  StyleSheet,
   Text,
   TouchableWithoutFeedback,
-  StyleSheet,
-  Image,
+  View,
 } from "react-native";
-import React from "react";
 import { getColorByPokemonType } from "../utils/getColorByPokemonType";
-import { capitalize } from "lodash";
-import { useNavigation } from "@react-navigation/native";
 
 export default function PokemonCard(props) {
   const navigation = useNavigation();
@@ -20,7 +20,7 @@ export default function PokemonCard(props) {
   };
 
   const goToPokemon = () => {
-    navigation.navigate("Pokemon", { id: pokemon.id });
+    navigation.navigate("PokemonScreen", { id: pokemon.id });
   };
   return (
     <TouchableWithoutFeedback onPress={goToPokemon}>

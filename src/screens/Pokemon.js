@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { ScrollView } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { getPokemonDetailsByIdApi } from "../api/pokemon";
+import Favorite from "../components/Pokemon/Favorite";
 import Header from "../components/Pokemon/Header";
 import Stats from "../components/Pokemon/Stats";
 import Type from "../components/Pokemon/Type";
 import { getColorByPokemonType } from "../utils/getColorByPokemonType";
 
-export default function Pokemon(props) {
+export default function PokemonScreen(props) {
   const {
     navigation,
     route: { params },
@@ -15,21 +16,6 @@ export default function Pokemon(props) {
   const [pokemon, setPokemon] = useState(null);
   const [colorByType, setColorByType] = useState(null);
 
-  useEffect(() => {
-    if (navigation) {
-      navigation.setOptions({
-        headerLeft: () => (
-          <Icon
-            name="arrow-back-outline"
-            color="#fff"
-            size={30}
-            style={{ marginLeft: 20 }}
-            onPress={navigation.goBack}
-          />
-        ),
-      });
-    }
-  }, [navigation, params]);
   useEffect(() => {
     (async () => {
       try {
@@ -44,6 +30,22 @@ export default function Pokemon(props) {
       }
     })();
   }, [params]);
+  useEffect(() => {
+    if (navigation) {
+      navigation.setOptions({
+        headerRight: () => <Favorite id={pokemon?.id} />,
+        headerLeft: () => (
+          <Icon
+            name="arrow-back-outline"
+            color="#fff"
+            size={30}
+            style={{ marginLeft: 20 }}
+            onPress={navigation.goBack}
+          />
+        ),
+      });
+    }
+  }, [navigation, params, pokemon]);
 
   if (!pokemon || !colorByType) return null;
   return (

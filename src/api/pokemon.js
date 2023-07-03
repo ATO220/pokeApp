@@ -31,3 +31,14 @@ export const getPokemonDetailsByIdApi = async (id) => {
     throw new Error(`Failed fetch pokemon detail by id ${id} : ${error}`);
   }
 };
+
+export const searchPokemonByNameApi = async (name) => {
+  try {
+    const url = `https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`;
+    const response = await fetch(url);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    throw new Error(`Failed fetch pokemon by name ${name} : ${error}`);
+  }
+};
